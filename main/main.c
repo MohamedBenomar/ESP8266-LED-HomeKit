@@ -87,7 +87,8 @@ homekit_accessory_t *accessories[] = {
 
 homekit_server_config_t config = {
     .accessories = accessories,
-    .password = "987-11-321"
+    .password = "987-11-321",
+    .setupId="9SW7"
 };
 
 void on_wifi_ready() {
