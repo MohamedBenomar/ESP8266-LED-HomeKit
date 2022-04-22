@@ -1,4 +1,4 @@
-PROGRAM = led
+PROGRAM = main
 
 EXTRA_COMPONENTS = \
 	extras/http-parser \
