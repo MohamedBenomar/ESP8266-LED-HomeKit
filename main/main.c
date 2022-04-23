@@ -11,7 +11,7 @@
 #include <wifi_config.h>
 
 
-const int led_gpio = 2;
+const int led_gpio = 0;
 bool led_on = false;
 
 void led_write(bool on) {
@@ -63,16 +63,16 @@ void led_on_set(homekit_value_t value) {
 homekit_accessory_t *accessories[] = {
     HOMEKIT_ACCESSORY(.id=1, .category=homekit_accessory_category_lightbulb, .services=(homekit_service_t*[]){
         HOMEKIT_SERVICE(ACCESSORY_INFORMATION, .characteristics=(homekit_characteristic_t*[]){
-            HOMEKIT_CHARACTERISTIC(NAME, "Lamp"),
+            HOMEKIT_CHARACTERISTIC(NAME, "LED"),
             HOMEKIT_CHARACTERISTIC(MANUFACTURER, "Mohamed Benomar"),
-            HOMEKIT_CHARACTERISTIC(SERIAL_NUMBER, "9877896540"),
-            HOMEKIT_CHARACTERISTIC(MODEL, "SideLamp"),
+            HOMEKIT_CHARACTERISTIC(SERIAL_NUMBER, "9873216540"),
+            HOMEKIT_CHARACTERISTIC(MODEL, "BedLED"),
             HOMEKIT_CHARACTERISTIC(FIRMWARE_REVISION, "1.0.0"),
             HOMEKIT_CHARACTERISTIC(IDENTIFY, led_identify),
             NULL
         }),
         HOMEKIT_SERVICE(LIGHTBULB, .primary=true, .characteristics=(homekit_characteristic_t*[]){
-            HOMEKIT_CHARACTERISTIC(NAME, "Lamp"),
+            HOMEKIT_CHARACTERISTIC(NAME, "LED"),
             HOMEKIT_CHARACTERISTIC(
                 ON, false,
                 .getter=led_on_get,
@@ -87,7 +87,7 @@ homekit_accessory_t *accessories[] = {
 
 homekit_server_config_t config = {
     .accessories = accessories,
-    .password = "987-33-321",
+    .password = "987-11-321",
     .setupId="9SW7"
 };
 
@@ -98,6 +98,6 @@ void on_wifi_ready() {
 void user_init(void) {
     uart_set_baud(0, 115200);
 
-    wifi_config_init("Lamp", NULL, on_wifi_ready);
+    wifi_config_init("LED", NULL, on_wifi_ready);
     led_init();
 }
